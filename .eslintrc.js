@@ -30,10 +30,10 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
-    'no-undef': 'off',
+    'no-undef': 'warn',
     'comma-dangle': 'off',
     'prettier/prettier': [
-      'off',
+      'warn',
       {
         endOfLine: 'auto',
         nonBreakingSpace: false,
