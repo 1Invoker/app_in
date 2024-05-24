@@ -1,12 +1,11 @@
 import './App.css';
-import Counter from './Components/Counter.';
+import ToDo from '../src/Components/ToDo/ToDo';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Counter />
-      </header>
+      <header className="App-header"></header>
+      <ToDo />
     </div>
   );
 }
