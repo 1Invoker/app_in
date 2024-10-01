@@ -1,28 +1,18 @@
 import React, { useState } from 'react';
 import './ToDo.css';
+import { useToDo } from './useToDo';
 
 const ToDo = () => {
-  const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  const [searchTitle, setSearchTitle] = useState('');
-
-  const handleInputChange = e => {
-    setInputValue(e.target.value);
-  };
-  const handleAddTodo = () => {
-    if (inputValue.trim() !== '') {
-      setTodos([...todos, inputValue.trim()]);
-      setInputValue('');
-    }
-  };
-  const deleteTodo = indexToDel => {
-    const updateToDos = todos.filter((todo, index) => index !== indexToDel);
-    setTodos(updateToDos);
-  };
-
-  const updateSearch = todos.filter(todo =>
-    todo.toLowerCase().includes(searchTitle.toLowerCase()),
-  );
+  const {
+    handleInputChange,
+    handleAddTodo,
+    deleteTodo,
+    todos: updateSearch,
+    inputValue,
+    searchTitle,
+    setSearchTitle,
+    setInputValue,
+  } = useToDo();
   return (
     <div className="todo-container">
       <h1>Todo List</h1>
