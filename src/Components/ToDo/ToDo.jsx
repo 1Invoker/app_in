@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ToDo.css';
 import { useToDo } from './useToDo';
+import { Reorder } from 'framer-motion';
 
 const ToDo = () => {
   const {
@@ -13,6 +14,10 @@ const ToDo = () => {
     setSearchTitle,
     setInputValue,
   } = useToDo();
+  const [items, setItems] = useState(updateSearch);
+  useEffect(() => {
+    setItems(updateSearch);
+  }, [updateSearch]);
   return (
     <div className="todo-container">
       <h1>Todo List</h1>
@@ -33,14 +38,18 @@ const ToDo = () => {
           placeholder="Search by title..."
         />
       </div>
-      <ul>
-        {updateSearch.map((todo, index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={() => deleteTodo(index)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <Reorder.Group axis="y" onReorder={setItems} values={items}>
+        <ul>
+          {items.map((todo, index) => (
+            <Reorder.Item key={index} value={todo}>
+              <li className="todo-elem">
+                {todo}
+                <button onClick={() => deleteTodo(index)}>Delete</button>
+              </li>
+            </Reorder.Item>
+          ))}
+        </ul>
+      </Reorder.Group>
     </div>
   );
 };
